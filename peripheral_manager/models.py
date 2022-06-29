@@ -1,17 +1,28 @@
-from random import choices
 from tabnanny import verbose
 from django.db import models
 from django.contrib.auth.models import User
-from django.forms import CharField
+
 
 # Create your models here.
 class CadastroProduto(models.Model):
     TYPE_PERIPHERAL = (("entrada","Entrada"),( "saida","Saida"))
-    nomeProduto = models.CharField(max_length=250, verbose_name="Nome do Produto")
-    descricao = models.TextField(verbose_name="Descrição", null=True, blank=True)
-    tipo = models.CharField(max_length=250, choices=TYPE_PERIPHERAL, default="Entrada")
-    autor = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name="Cadastrado por Field:")
+    nameProduct = models.CharField(max_length=250, verbose_name="Nome do Produto")
+    description = models.TextField(verbose_name="Descrição", null=True, blank=True)
+    typeProduct = models.CharField(max_length=250, choices=TYPE_PERIPHERAL, default="Entrada")
+    registrationDate = models.DateTimeField(verbose_name="")
+
 
     def __str__(self):
-        return self.nomeProduto
+        return self.nameProduct
 
+class CadastroEquipamento(models.Model):
+    category = models.ForeignKey(CadastroProduto, on_delete=models.PROTECT, verbose_name="Categoria")
+    ticket = models.CharField(max_length=250, verbose_name="N° do Chamado:")
+    heritage = models.CharField(max_length=12, verbose_name="Patrimônio:")
+    author = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name="Cadastrado por:")
+
+    def __str__(self):
+        return self.heritage
+
+    class Meta:
+        verbose_name = "Estoque"

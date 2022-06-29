@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'peripheral_manager/css/index.css' %}">
+    <link rel="shortcut icon" href="{% static 'peripheral_manager/imgs/ico.png' %}" type="image/x-icon">
+    <title>Periféricos Stefanini</title>
+</head>
+<body>
+    <header>
+        <div id="logo_container"><img id="logo" src="{% static 'peripheral_manager/imgs/logo.png' %}" alt=""></div>
+        <nav>
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="{% url 'admin:index' %}">Painel</a></li>
+                <li><a href="">Estoque</a></li>
+            </ul>
+        </nav>  
+    </header>
+    <main>
+        <section id="Content">
+            {% block content %}
+            {% endblock %}
+        </section>
+    </main>
+    
+</body>
+</html>
